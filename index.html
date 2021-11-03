@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function handleClick() {
+        const url = document.getElementById("url").value;
+        if (!url) {
+          document.getElementById("shortUrl").innerHTML =
+            "Please enter a value";
+          return;
+        }
+        document.getElementById("url").value = null;
+        let shortUrl;
+        var requestOptions = {
+          method: "GET",
+          redirect: "follow",
+        };
+
+        fetch(`https://api.shrtco.de/v2//shorten?url=${url}`, requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            shortUrl = result.result.short_link;
+            console.log(shortUrl);
+            document.getElementById("shortUrl").innerHTML = shortUrl;
+          })
+          .catch((error) => {
+            document.getElementById("shortUrl").innerHTML =
+              "Please enter a valid URL";
+            console.log("error", error);
+          });
+      }
+    </script>
+  </head>
+  <body>
+    Enter the URL
+    <input type="url" id="url" required />
+    <input type="button" onclick="handleClick()" value="shorten" />
+    <p id="shortUrl"></p>
+  </body>
+</html>
