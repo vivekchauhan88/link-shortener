@@ -5,7 +5,7 @@
       function handleClick() {
         const url = document.getElementById("url").value;
         if (!url) {
-          document.getElementById("shortUrl").innerHTML =
+          document.getElementById("short-url").innerHTML =
             "Please enter a value";
           return;
         }
@@ -21,10 +21,10 @@
           .then((result) => {
             shortUrl = result.result.short_link;
             console.log(shortUrl);
-            document.getElementById("shortUrl").innerHTML = shortUrl;
+            document.getElementById("short-url").innerHTML = shortUrl;
           })
           .catch((error) => {
-            document.getElementById("shortUrl").innerHTML =
+            document.getElementById("short-url").innerHTML =
               "Please enter a valid URL";
             console.log("error", error);
           });
@@ -35,6 +35,6 @@
     Enter the URL
     <input type="url" id="url" required />
     <input type="button" onclick="handleClick()" value="shorten" />
-    <p id="shortUrl"></p>
+    <p id="short-url"></p>
   </body>
 </html>
